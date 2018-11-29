@@ -12,6 +12,7 @@ pipeline {
 node {
   stage ('Compilar') {
     echo "Comienza la compilación ... "
+    mvn compile
   }
   
   stage ('Test') {
