@@ -14,12 +14,12 @@ node {
   checkout scm
   stage ('Compilar') {
     echo "Comienza la compilación ... "
- //   withMaven(
-   //     maven: 'Maven por defecto'
-    //){
+   withMaven(
+        maven: 'Maven por defecto'
+    ){
         sh 'mvn compile'
-   // }
- //   mvn compile
+    }
+
   }
   
   stage ('Test') {
