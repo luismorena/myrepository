@@ -24,9 +24,19 @@ node {
   
   stage ('Test') {
     echo "Comienzan las pruebas ... "
+    withMaven(
+        maven: 'Maven por defecto'
+    ){
+        sh 'mvn test'
+    }
   }
   stage ('Empaquetar') {
     echo "Comienza la empaquetación ... "
+    withMaven(
+        maven: 'Maven por defecto'
+    ){
+        sh 'mvn package'
+    }
   }
 }
 
