@@ -11,6 +11,7 @@ pipeline {
 } */
 
 node {
+  checkout scm
   stage ('Compilar') {
     echo "Comienza la compilación ... "
     mvn compile
