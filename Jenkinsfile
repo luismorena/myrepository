@@ -19,7 +19,7 @@ node {
     //){
         sh 'mvn compile'
    // }
-    mvn compile
+ //   mvn compile
   }
   
   stage ('Test') {
