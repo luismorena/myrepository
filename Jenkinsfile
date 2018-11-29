@@ -7,4 +7,10 @@ pipeline {
       }
     }
   }
+} 
+
+node {
+  stage ('Build') {
+    echo "Hola Mundo 2"
+  }
 }
