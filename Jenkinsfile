@@ -1,3 +1,4 @@
+/*
 pipeline {
   agent any
   stages {
@@ -7,8 +8,8 @@ pipeline {
       }
     }
   }
-} 
-/*
+} */
+
 node {
   stage ('Compilar') {
     echo "Comienza la compilación ... "
@@ -22,4 +23,4 @@ node {
     echo "Comienza la empaquetación ... "
   }
 }
-*/
+
