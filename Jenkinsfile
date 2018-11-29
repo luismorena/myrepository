@@ -11,6 +11,6 @@ pipeline {
 
 node {
   stage ('Build') {
-    echo "Hola Mundo 2"
+    echo "Adios Mundo"
   }
 }
