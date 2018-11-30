@@ -1,76 +1,24 @@
 
-pipeline {
-  agent any
-  stages {
-    stage ('Etapa 1:: Comienza la compilacion') {
-      steps {
-        echo "Comienza la compilación ... "
-       withMaven(
-         maven: 'Maven por defecto'
-       ){
-        sh 'mvn compile'
-        }
-      }
-    }
-     stage ('Etapa 2 :: Comienzan las pruebas ... " ') {
-      steps {
-        echo 'Comienzan las pruebas'
-         withMaven(
-           maven: 'Maven por defecto'
-         ){
-          sh 'mvn test'
-        }
-        
-      }
-    }
-     stage ('Etapa 3 :: Comienza el empaquetado') {
-      steps { 
-        echo 'Comienza el empaquetado'
-        withMaven(
-           maven: 'Maven por defecto'
-         ){
-          sh 'mvn package'      
-        }
-      }
-    }
-  }
-} 
-
-/*
-
 node {
-  checkout scm
-  stage ('Compilar') {
-    echo "Comienza la compilación ... "
-     withMaven(
-       maven: 'Maven por defecto'
-    ){
-        sh 'mvn compile'
-   }
+    try {
+        stage('Test') {
+            sh 'echo "Fallo!"; exit 1'
+        }
+        echo 'Se ejecuta si exito'
+    } catch (e) {
+        echo 'Se ejecuta si fallo'
+        throw e
+    } finally {
+        def currentResult = currentBuild.result ?: 'FAILURE'
+        if (currentResult == 'FAILURE') {
+            echo 'Se ejecuta si unstable'
+        }
 
-  }
-  
-  stage ('Test') {
-    echo "Comienzan las pruebas ... "
-    withMaven(
-        maven: 'Maven por defecto'
-    ){
-        sh 'mvn test'
-  //      junit '**/*.xml'
-//    }
-  //}
-//  stage ('Empaquetar') {
-//    echo "Comienza la empaquetación ... "
-    //try{
-      
-  //  }finally{
-    //deleteDir()
- //  }
- //    withMaven( maven: 'Maven por defecto'
- //        sh 'mvn package'
- //   ){
-        
-   // }
-//  }
-//}
+        def previousResult = currentBuild.previousBuild?.result
+        if (previousResult != null && previousResult != currentResult) {
+            echo 'Se ejecuta si hay cambio de estado'
+        }
 
+        echo 'Se ejecuta siempre'
+    }
+}
