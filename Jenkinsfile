@@ -28,6 +28,7 @@ node {
 //        maven: 'Maven por defecto'
   //  ){
         sh 'mvn test'
+        junit '**/*.xml'
     //}
   }
   stage ('Empaquetar') {
