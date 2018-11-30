@@ -32,10 +32,15 @@ node {
   }
   stage ('Empaquetar') {
     echo "Comienza la empaquetación ... "
+    try{
+      sh 'mvn package'
+    }finally{
+      deleteDir()
+    }
   //  withMaven(
     //    maven: 'Maven por defecto'
    // ){
-        sh 'mvn package'
+        
    // }
   }
 }
