@@ -35,7 +35,7 @@ node {
     try{
       sh 'mvn package'
     }finally{
-      deleteDir()
+    //deleteDir()
     }
   //  withMaven(
     //    maven: 'Maven por defecto'
