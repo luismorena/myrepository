@@ -19,7 +19,6 @@ pipeline {
            maven: 'Maven por defecto'
          ){
           sh 'mvn test'
-           junit '**/*.xml'
         }
         
       }
@@ -57,21 +56,21 @@ node {
         maven: 'Maven por defecto'
     ){
         sh 'mvn test'
-        junit '**/*.xml'
-    }
-  }
-  stage ('Empaquetar') {
-    echo "Comienza la empaquetación ... "
+  //      junit '**/*.xml'
+//    }
+  //}
+//  stage ('Empaquetar') {
+//    echo "Comienza la empaquetación ... "
     //try{
       
   //  }finally{
     //deleteDir()
-    }
-     withMaven( maven: 'Maven por defecto'
-          sh 'mvn package'
-    ){
+ //  }
+ //    withMaven( maven: 'Maven por defecto'
+ //        sh 'mvn package'
+ //   ){
         
    // }
-  }
-}
+//  }
+//}
 
