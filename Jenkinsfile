@@ -1,4 +1,3 @@
-
 node {
     try {
         stage('Test') {
@@ -9,8 +8,8 @@ node {
         echo 'Se ejecuta si fallo'
         throw e
     } finally {
-        def currentResult = currentBuild.result ?: 'FAILURE'
-        if (currentResult == 'FAILURE') {
+        def currentResult = currentBuild.result ?: 'SUCCESS'
+        if (currentResult == 'UNSTABLE') {
             echo 'Se ejecuta si unstable'
         }
 
